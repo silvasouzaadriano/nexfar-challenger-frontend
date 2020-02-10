@@ -34,6 +34,10 @@ export const ProductList = styled.ul`
       margin-top: 5px;
     }
 
+    .qtd {
+      color: #ff0000;
+    }
+
     > span {
       font-size: 21px;
       font-weight: bold;

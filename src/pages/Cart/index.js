@@ -31,11 +31,23 @@ export default function Cart() {
   const dispatch = useDispatch();
 
   function increment(product) {
-    dispatch(CartActions.updateAmountRequest(product.id, product.amount + 1));
+    dispatch(
+      CartActions.updateAmountRequest(
+        product.sku,
+        product.amount + 1,
+        product.quantityAvailable
+      )
+    );
   }
 
   function decrement(product) {
-    dispatch(CartActions.updateAmountRequest(product.id, product.amount - 1));
+    dispatch(
+      CartActions.updateAmountRequest(
+        product.sku,
+        product.amount - 1,
+        product.quantityAvailable
+      )
+    );
   }
 
   return (
@@ -54,10 +66,10 @@ export default function Cart() {
           {cart.map(product => (
             <tr>
               <td>
-                <img src={product.image} alt={product.title} />
+                <img src={product.imageURL} alt={product.name} />
               </td>
               <td>
-                <strong>{product.title}</strong>
+                <strong>{product.name}</strong>
                 <span>{product.priceFormatted}</span>
               </td>
               <td>
@@ -78,7 +90,7 @@ export default function Cart() {
                 <button
                   type="button"
                   onClick={() =>
-                    dispatch(CartActions.removeFromCart(product.id))
+                    dispatch(CartActions.removeFromCart(product.sku))
                   }
                 >
                   <MdDelete size={20} color="#7159c1" />
@@ -90,8 +102,6 @@ export default function Cart() {
       </ProductTable>
 
       <footer>
-        <button type="button">Finalizar pedido</button>
-
         <Total>
           <span>TOTAL</span>
           <strong>{total}</strong>

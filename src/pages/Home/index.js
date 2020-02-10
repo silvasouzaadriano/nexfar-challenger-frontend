@@ -12,7 +12,7 @@ export default function Home() {
   const [products, setProducts] = useState([]);
   const amount = useSelector(state =>
     state.cart.reduce((sumAmount, product) => {
-      sumAmount[product.sku] = product.quantityAvailable;
+      sumAmount[product.sku] = product.amount;
 
       return sumAmount;
     }, {})
@@ -35,8 +35,16 @@ export default function Home() {
     loadProducts();
   }, []);
 
-  function handleAddProduct(sku) {
-    dispatch(CartActions.addToCartRequest(sku));
+  function handleAddProduct(sku, imageURL, name, price, quantityAvailable) {
+    dispatch(
+      CartActions.addToCartRequest(
+        sku,
+        imageURL,
+        name,
+        price,
+        quantityAvailable
+      )
+    );
   }
 
   return (
@@ -45,12 +53,31 @@ export default function Home() {
         <li key={product.sku}>
           <img src={product.imageURL} alt={product.name} />
           <strong>{product.name}</strong>
-          <strong>{product.sku}</strong>
-          <strong>{product.category}</strong>
-          <strong>{product.maker}</strong>
-          <span>{product.priceFormatted}</span>
+          <strong>SKU: {product.sku}</strong>
+          <strong>Categoria: {product.category}</strong>
+          <strong>Fabricante: {product.maker}</strong>
+          <strong>
+            Quantidade disponível: {product.quantityAvailable}{' '}
+            {product.quantityAvailable < 10 ? (
+              <span className="qtd"> (últimas unidades)</span>
+            ) : (
+              ''
+            )}
+          </strong>
+          <span>Preço: {product.priceFormatted}</span>
 
-          <button type="button" onClick={() => handleAddProduct(product.sku)}>
+          <button
+            type="button"
+            onClick={() =>
+              handleAddProduct(
+                product.sku,
+                product.imageURL,
+                product.name,
+                product.price,
+                product.quantityAvailable
+              )
+            }
+          >
             <div>
               <MdAddShoppingCart size={16} color="#FFF" />{' '}
               {amount[product.sku] || 0}

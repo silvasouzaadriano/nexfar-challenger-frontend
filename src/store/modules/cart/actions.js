@@ -1,7 +1,17 @@
-export function addToCartRequest(id) {
+export function addToCartRequest(
+  sku,
+  imageURL,
+  name,
+  price,
+  quantityAvailable
+) {
   return {
     type: '@cart/ADD_REQUEST',
-    id,
+    sku,
+    imageURL,
+    name,
+    price,
+    quantityAvailable,
   };
 }
 
@@ -12,25 +22,26 @@ export function addToCartSuccess(product) {
   };
 }
 
-export function removeFromCart(id) {
+export function removeFromCart(sku) {
   return {
     type: '@cart/REMOVE',
-    id,
+    sku,
   };
 }
 
-export function updateAmountRequest(id, amount) {
+export function updateAmountRequest(sku, amount, quantityAvailable) {
   return {
     type: '@cart/UPDATE_AMOUNT_REQUEST',
-    id,
+    sku,
     amount,
+    quantityAvailable,
   };
 }
 
-export function updateAmountSuccess(id, amount) {
+export function updateAmountSuccess(sku, amount) {
   return {
     type: '@cart/UPDATE_AMOUNT_SUCCESS',
-    id,
+    sku,
     amount,
   };
 }
