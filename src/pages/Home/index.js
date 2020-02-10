@@ -51,7 +51,10 @@ export default function Home() {
     <ProductList>
       {products.map(product => (
         <li key={product.sku}>
-          <img src={product.imageURL} alt={product.name} />
+          <div className="zoom">
+            <img src={product.imageURL} alt={product.name} />
+          </div>
+
           <strong>{product.name}</strong>
           <strong>SKU: {product.sku}</strong>
           <strong>Categoria: {product.category}</strong>

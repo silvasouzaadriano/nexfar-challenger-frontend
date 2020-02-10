@@ -13,9 +13,12 @@ export default function Header() {
 
   return (
     <Container>
-      <Link to="/">
-        <img src={nexfar} alt="Nexfar" />
-      </Link>
+      <Cart to="/">
+        <div>
+          <img src={nexfar} alt="Nexfar" />
+          <span className="Logo">Produtos</span>
+        </div>
+      </Cart>
 
       <Cart to="/cart">
         <div>

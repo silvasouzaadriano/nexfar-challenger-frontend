@@ -53,54 +53,55 @@ export default function Cart() {
   return (
     <Container>
       <ProductTable>
-        <thead>
-          <tr>
-            <th />
-            <th>PRODUTO</th>
-            <th>QTD</th>
-            <th>SUBTOTAL</th>
-            <th />
-          </tr>
-        </thead>
-        <tbody>
-          {cart.map(product => (
+        <table>
+          <thead>
             <tr>
-              <td>
-                <img src={product.imageURL} alt={product.name} />
-              </td>
-              <td>
-                <strong>{product.name}</strong>
-                <span>{product.priceFormatted}</span>
-              </td>
-              <td>
-                <div>
-                  <button type="button" onClick={() => decrement(product)}>
-                    <MdRemoveCircleOutline size={20} color="#7159c1" />
-                  </button>
-                  <input type="number" readOnly value={product.amount} />
-                  <button type="button" onClick={() => increment(product)}>
-                    <MdAddCircleOutline size={20} color="#7159c1" />
-                  </button>
-                </div>
-              </td>
-              <td>
-                <strong>{product.subtotal}</strong>
-              </td>
-              <td>
-                <button
-                  type="button"
-                  onClick={() =>
-                    dispatch(CartActions.removeFromCart(product.sku))
-                  }
-                >
-                  <MdDelete size={20} color="#7159c1" />
-                </button>
-              </td>
+              <th />
+              <th>PRODUTO</th>
+              <th>QTD</th>
+              <th>SUBTOTAL</th>
+              <th />
             </tr>
-          ))}
-        </tbody>
+          </thead>
+          <tbody>
+            {cart.map(product => (
+              <tr role="row">
+                <td role="cell">
+                  <img src={product.imageURL} alt={product.name} />
+                </td>
+                <td role="cell">
+                  <strong>{product.name}</strong>
+                  <span>{product.priceFormatted}</span>
+                </td>
+                <td role="cell">
+                  <div>
+                    <button type="button" onClick={() => decrement(product)}>
+                      <MdRemoveCircleOutline size={20} color="#7159c1" />
+                    </button>
+                    <input type="number" readOnly value={product.amount} />
+                    <button type="button" onClick={() => increment(product)}>
+                      <MdAddCircleOutline size={20} color="#7159c1" />
+                    </button>
+                  </div>
+                </td>
+                <td role="cell">
+                  <strong className="subTotal">{product.subtotal}</strong>
+                </td>
+                <td role="cell">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      dispatch(CartActions.removeFromCart(product.sku))
+                    }
+                  >
+                    <MdDelete size={20} color="#7159c1" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </ProductTable>
-
       <footer>
         <Total>
           <span>TOTAL</span>

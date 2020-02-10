@@ -16,8 +16,19 @@ export const ProductList = styled.ul`
     `
   )}
 
-  img {
+  .zoom img {
     height: 150px;
+    margin-left: 50px;
+    max-width: 100%;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+
+  .zoom:hover img {
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(2.1);
   }
 
   li {

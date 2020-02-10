@@ -18,6 +18,11 @@ export const Cart = styled(Link)`
     opacity: 0.7;
   }
 
+  .Logo {
+    color: #fff;
+    font-weight: bold;
+  }
+
   div {
     text-align: right;
     margin-right: 10px;
