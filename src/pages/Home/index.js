@@ -81,11 +81,17 @@ export default function Home() {
               )
             }
           >
-            <div>
-              <MdAddShoppingCart size={16} color="#FFF" />{' '}
-              {amount[product.sku] || 0}
-            </div>
-            <span>ADICIONAR AO CARRINHO</span>
+            {product.quantityAvailable >= 1 ? (
+              <>
+                <div>
+                  <MdAddShoppingCart size={16} color="#FFF" />{' '}
+                  {amount[product.sku] || 0}
+                </div>
+                <span>ADICIONAR AO CARRINHO</span>
+              </>
+            ) : (
+              <span>PRODUTO SEM ESTOQUE</span>
+            )}
           </button>
         </li>
       ))}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   MdRemoveCircleOutline,
@@ -38,6 +39,7 @@ export default function Cart() {
         product.quantityAvailable
       )
     );
+    toast.info('Quantidade adicionada com sucesso!');
   }
 
   function decrement(product) {
@@ -48,6 +50,11 @@ export default function Cart() {
         product.quantityAvailable
       )
     );
+    if (product.amount > 1) {
+      toast.info('Quantidade excluída com sucesso!');
+    } else {
+      toast.error('Quantidade não pode ser menor que 1 unidade!');
+    }
   }
 
   return (
@@ -71,7 +78,7 @@ export default function Cart() {
                 </td>
                 <td role="cell">
                   <strong>{product.name}</strong>
-                  <span>{product.priceFormatted}</span>
+                  <span>Preço: {product.priceFormatted}</span>
                 </td>
                 <td role="cell">
                   <div>
@@ -104,7 +111,7 @@ export default function Cart() {
       </ProductTable>
       <footer>
         <Total>
-          <span>TOTAL</span>
+          <span>Total</span>
           <strong>{total}</strong>
         </Total>
       </footer>

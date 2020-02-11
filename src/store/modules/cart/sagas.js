@@ -1,7 +1,6 @@
 import { select, put, all, takeLatest } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 
-import history from '../../../services/history';
 import { formatPrice } from '../../../util/format';
 
 import { addToCartSuccess, updateAmountSuccess } from './actions';
@@ -23,6 +22,7 @@ function* addToCart({ sku, imageURL, name, price, quantityAvailable }) {
 
   if (productExists) {
     yield put(updateAmountSuccess(sku, amount));
+    toast.info('Quantidade adicionada com sucesso!');
   } else {
     const data = {
       sku,
@@ -36,7 +36,7 @@ function* addToCart({ sku, imageURL, name, price, quantityAvailable }) {
 
     yield put(addToCartSuccess(data));
 
-    history.push('/cart');
+    toast.info('Produto adicionado ao carrinho com sucesso!');
   }
 }
 
