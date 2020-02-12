@@ -1,4 +1,9 @@
 import produce from 'immer';
+import { toast } from 'react-toastify';
+
+const options = {
+  autoClose: 2000,
+};
 
 export default function cart(state = [], action) {
   switch (action.type) {
@@ -14,6 +19,7 @@ export default function cart(state = [], action) {
 
         if (productIndex >= 0) {
           draft.splice(productIndex, 1);
+          toast.info('Produto removido do carrinho com sucesso!', options);
         }
       });
     case '@cart/UPDATE_AMOUNT_SUCCESS': {

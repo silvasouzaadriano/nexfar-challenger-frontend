@@ -5,6 +5,10 @@ import { formatPrice } from '../../../util/format';
 
 import { addToCartSuccess, updateAmountSuccess } from './actions';
 
+const options = {
+  autoClose: 2000,
+};
+
 function* addToCart({ sku, imageURL, name, price, quantityAvailable }) {
   const productExists = yield select(state =>
     state.cart.find(p => p.sku === sku)
@@ -16,13 +20,13 @@ function* addToCart({ sku, imageURL, name, price, quantityAvailable }) {
   const amount = currentAmount + 1;
 
   if (amount > stockAmount) {
-    toast.error('Quantidade solicitada fora do estoque');
+    toast.error('Quantidade solicitada fora do estoque!', options);
     return;
   }
 
   if (productExists) {
     yield put(updateAmountSuccess(sku, amount));
-    toast.info('Quantidade adicionada com sucesso!');
+    toast.info('Quantidade adicionada com sucesso!', options);
   } else {
     const data = {
       sku,
@@ -36,7 +40,7 @@ function* addToCart({ sku, imageURL, name, price, quantityAvailable }) {
 
     yield put(addToCartSuccess(data));
 
-    toast.info('Produto adicionado ao carrinho com sucesso!');
+    toast.info('Produto adicionado ao carrinho com sucesso!', options);
   }
 }
 
@@ -44,7 +48,7 @@ function* updateAmount({ sku, amount, quantityAvailable }) {
   if (amount <= 0) return;
 
   if (amount > quantityAvailable) {
-    toast.error('Quantidade solicitada fora do estoque');
+    toast.error('Quantidade solicitada fora do estoque!', options);
     return;
   }
 

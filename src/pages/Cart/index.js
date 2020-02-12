@@ -11,9 +11,13 @@ import { formatPrice } from '../../util/format';
 
 import * as CartActions from '../../store/modules/cart/actions';
 
-import { Container, ProductTable, Total } from './styles';
+import { Container, ProductTable } from './styles';
 
 export default function Cart() {
+  const options = {
+    autoClose: 2000,
+  };
+
   const total = useSelector(state =>
     formatPrice(
       state.cart.reduce((totalSum, product) => {
@@ -39,7 +43,9 @@ export default function Cart() {
         product.quantityAvailable
       )
     );
-    toast.info('Quantidade adicionada com sucesso!');
+    if (product.amount < product.quantityAvailable) {
+      toast.info('Quantidade adicionada com sucesso!', options);
+    }
   }
 
   function decrement(product) {
@@ -51,9 +57,9 @@ export default function Cart() {
       )
     );
     if (product.amount > 1) {
-      toast.info('Quantidade excluída com sucesso!');
+      toast.info('Quantidade excluída com sucesso!', options);
     } else {
-      toast.error('Quantidade não pode ser menor que 1 unidade!');
+      toast.error('Quantidade não pode ser menor que 1 unidade!', options);
     }
   }
 
@@ -101,20 +107,25 @@ export default function Cart() {
                       dispatch(CartActions.removeFromCart(product.sku))
                     }
                   >
-                    <MdDelete size={20} color="#7159c1" />
+                    <MdDelete size={20} color="#A52A2A" />
                   </button>
                 </td>
               </tr>
             ))}
+            <tr role="row">
+              <td role="cell" />
+              <td role="cell" />
+              <td role="cell">
+                <div />
+              </td>
+              <td role="cell">
+                <strong className="Total">Total: {total}</strong>
+              </td>
+              <td role="cell" />
+            </tr>
           </tbody>
         </table>
       </ProductTable>
-      <footer>
-        <Total>
-          <span>Total</span>
-          <strong>{total}</strong>
-        </Total>
-      </footer>
     </Container>
   );
 }

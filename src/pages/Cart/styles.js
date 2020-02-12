@@ -39,6 +39,9 @@ export const ProductTable = styled.div`
   }
 
   tbody td {
+    .Total {
+      text-align: center;
+    }
     .subTotal {
       text-align: center;
     }
@@ -57,6 +60,9 @@ export const ProductTable = styled.div`
     }
 
     tbody td {
+      .Total {
+        text-align: left;
+      }
       .subTotal {
         text-align: left;
       }
@@ -111,6 +117,24 @@ export const ProductTable = styled.div`
     td:nth-of-type(5):before {
       content: 'Excluir item?';
     }
+
+    tr:last-child {
+      td:nth-of-type(1):before {
+        content: '';
+      }
+      td:nth-of-type(2):before {
+        content: '';
+      }
+      td:nth-of-type(3):before {
+        content: '';
+      }
+      td:nth-of-type(4):before {
+        content: '';
+      }
+      td:nth-of-type(5):before {
+        content: '';
+      }
+    }
   }
 
   img {
@@ -122,11 +146,21 @@ export const ProductTable = styled.div`
     display: block;
   }
 
+  .subTotal {
+    color: #7159c1;
+    font-weight: bold;
+  }
+
+  .Total {
+    color: #7159c1;
+    font-weight: bold;
+  }
+
   span {
     display: block;
     margin-top: 5px;
-    font-size: 18px;
     font-weight: bold;
+    color: #7159c1;
   }
 
   div {
@@ -146,20 +180,5 @@ export const ProductTable = styled.div`
     background: none;
     border: 0;
     padding: 6px;
-  }
-`;
-
-export const Total = styled.div`
-  display: flex;
-  align-items: baseline;
-
-  span {
-    color: #999;
-    font-weight: bold;
-  }
-
-  strong {
-    font-size: 28px;
-    margin-left: 5px;
   }
 `;
