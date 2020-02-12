@@ -54,7 +54,7 @@ $ cd nexfar-challenger-frontend
 # Install dependencies
 $ yarn install OR npm run install
 
-# Run the Front
+# Run the application
 $ yarn start OR npm run start
 ```
 
