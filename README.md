@@ -40,7 +40,7 @@ Listar produtos
 
 ## How To Use
 
-To clone and run this application is required: [Git](https://git-scm.com), [Node.js v10.16.1](https://nodejs.org/en/) or higher + [Yarn v1.19.1](https://yarnpkg.com/lang/en/) (The yarn one is optional once you might run the steps using npm and npx) or higher installed on your computer.
+To clone and run this application is required: [Git](https://git-scm.com), [Node.js v10.16.1](https://nodejs.org/en/) or higher + [Yarn v1.19.1](https://yarnpkg.com/lang/en/) or higher installed on your computer. Note that the yarn one is optional once you might run the steps bellow using npm and npx.
 
 ### Installing
 ```bash
@@ -48,7 +48,7 @@ To clone and run this application is required: [Git](https://git-scm.com), [Node
 # Clone this repository
 $ git clone https://github.com/silvasouzaadriano/nexfar-challenger-frontend.git
 
-# Go into the front path
+# Go into the frontend path
 $ cd nexfar-challenger-frontend
 
 # Install dependencies
