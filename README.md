@@ -51,6 +51,12 @@ $ git clone https://github.com/silvasouzaadriano/nexfar-challenger-frontend.git
 # Go into the frontend path
 $ cd nexfar-challenger-frontend
 
+
+# Disabling Heroku Cors
+$ Edit the file src/services/api.js
+$ Comment the line 4 and uncomment the line 5
+
+
 # Install dependencies
 $ yarn install OR npm run install
 
